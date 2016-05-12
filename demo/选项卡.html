@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1 input {
+				background: red;
+			}
+			
+			 .active {
+				color: yellow;
+			}
+			
+			#div1 div{
+				background: #ccc;
+				width: 200px;
+				height: 200px;
+				display: none;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				var div1=document.getElementById('div1');
+				var bts=div1.getElementsByTagName('input');
+				var iDiv=div1.getElementsByTagName('div');
+				for(var i=0;i<bts.length;i++){
+					bts[i].index=i;
+					bts[i].onclick=function(){
+						for(var i=0;i<bts.length;i++){
+							bts[i].className='';
+							iDiv[i].style.display='none';
+						}
+						this.className='active';
+						iDiv[this.index].style.display='block';
+					}
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="div1">
+			<input type="button" name="" id="" value="aaa" class="active" />
+			<input type="button" name="" id="" value="bbb" />
+			<input type="button" name="" id="" value="ccc" />
+			<div style="display: block;">aaa</div>
+			<div>bbb</div>
+			<div>ccc</div>
+		</div>
+
+	</body>
+
+</html>

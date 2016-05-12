@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+         .a{
+         	display: table-cell;
+         	width: 400px;
+         	height: 400px;
+         	background:#000;
+            vertical-align: middle;
+         }
+         .content{
+            width: 50%;
+            margin: 0 auto;
+            background:#090;
+            text-align: center; 
+            text-align: left;           
+         }
+	</style>
+</head>
+<body>
+	<div class="a">
+			<div class="content">
+				JavaScript一种直译式脚本语言，是一种动态类型、弱类型、基于原型的语言，内置支持类型。它的解释器被称为JavaScript引擎，为浏览器的一部分，广泛用于客户端的脚本语言，最早是在HTML（标准通用标记语言下的一个应用）网页上使用，用来给HTML网页增加动态功能。1111
+			</div>
+	</div>
+</body>
+</html>
+<script>
+  function a() {   
+    var i = 0;   
+    function b() { alert(++i); }   
+    return b;  
+}  
+//调用方法，把声明一个变量c，去作为a()函数的引用，c引用了函数a()后，再调返回方法c()  
+var c = a();  
+// c();  
+
+//我们也可以这样写  
+// a()(); //调用函数a()，和返回方法a()();  
+alert(c()) //这样得到的结果是undefined，因为我们只能通过返回的方法去得到函数的内部变量，这样是不行的。  
+</script>

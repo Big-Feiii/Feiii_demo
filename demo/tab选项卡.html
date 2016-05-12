@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>tab菜单</title>
+	<style>
+      h2,h5,#tooltipMsg,p{
+      	white-space: nowrap;
+      }
+      td{
+      	border: 1px solid #ccc;
+      	height: 50px;
+      	text-align: center;
+      	font-size: 10pt;
+      	padding: 2px;
+      }
+      .tabSwitchParent{
+      	position: absolute;
+      	height: 100px;
+      	width: 200px;
+      }
+      .tabSwitchParent div{
+      	position: relative;
+      	float: left;
+      }
+      .tabSwitchTarget{
+      	display: none;
+      	left: 0;
+      	top: 0px;
+      	z-index: 1;
+      	width: 326px;
+      	height: 54px;
+      	padding: 5px;
+      	border: 1px solid #ccc;
+      	color: #666;
+      }
+      #tabSwitch{
+      	position: relative;
+      	float: left;
+      	z-index: 2;
+      	top: 1px;
+      	width: 338px;	
+      	font-size: 15px;
+      	margin: 0px;
+      	text-align: center;
+      	cursor: pointer;
+      }
+      #tabSwitch div{
+      	width: 112px;
+      	/*text-align: center;*/
+      }
+      #tabSwitch .on{
+      	border: 1px solid #ccc;
+      	border-bottom: none;
+      	background: #fff;
+      }
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			function getTypeElement(es,type){
+				var esLen=es.length,
+				i=0,
+				eArr=[],
+				esl=null;
+				for(;i<esLen;i++){
+				esl=es[i];
+			if(esl.nodeName.replace("#","").toLocaleLowerCase()==type){
+				eArr.push(esl);
+			}
+		}
+		return eArr;
+};		
+           function tabSwitch(e){
+           	var divs=getTypeElement(e.childNodes,"div"),
+           	I=divs.length,
+           	i=0;
+           	for(;i<I;i++){
+           		divs[i].onclick=function(){
+           			for(var ii=0;ii<I;ii++){
+           				divs[ii].className="";
+           				document.getElementById("tabSwitch"+(ii+1)).style.display="none";
+           			}
+           			this.className="on";
+           			document.getElementById(this.getAttribute("data-target")).style.display="block";
+           		}
+           	}
+           }
+           tabSwitch(document.getElementById("tabSwitch"));
+           }
+	</script>
+</head>
+<body>
+	<h2>Tab选项卡切换</h2>
+	<div class="tabSwitchParent">
+		<!-- 选项卡 -->
+		<div id="tabSwitch">
+			<div data-target="tabSwitch1" class="on">选项卡1</div>
+			<div data-target="tabSwitch2">选项卡2</div>
+			<div data-target="tabSwitch3">选项卡3</div>
+		</div>
+		<!-- 内容 -->
+		<div class="tabSwitchTarget" id="tabSwitch1" style="display:block;color:#123323;">
+			选项卡1内容,选项卡1
+		</div>
+		<div class="tabSwitchTarget" id="tabSwitch2" style="color: #abcdee;">
+			选项卡2内容,选项卡2
+		</div>
+		<div class="tabSwitchTarget" id="tabSwitch3" style="color: #f00;">
+			选项卡3内容,选项卡3
+		</div>
+	</div>
+</body>
+</html>
