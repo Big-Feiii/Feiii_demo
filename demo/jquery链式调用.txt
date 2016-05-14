@@ -1,0 +1,62 @@
+jquery链式DOM的实现原理
+DOM链式调用的处理：
+
+1.节约JS代码.
+
+2.所返回的都是同一个对象，可以提高代码的效率。
+
+      DOM的必要点：
+
+  1.通过简单扩展原型方法并通过return this的形式来实现跨浏览器的链式调用。
+
+  2.利用JS下的简单工厂模式，来将所有对于同一个DOM对象的操作指定同一个实例。
+
+//定义一个JS类
+
+function Demo() {
+
+}
+
+
+//扩展它的prototype
+
+Demo.prototype ={
+
+	setName:function (name) {
+
+		this.name=name;
+
+		return this;
+
+	},
+
+	getName:function () {
+
+		return this.name;
+
+	},
+
+	setAge:function (age) {
+
+		this.age=age;
+
+		return this;
+
+	}
+
+};
+
+
+////工厂函数
+
+function D() {
+
+	return new Demo();
+
+}
+
+
+
+//去实现可链式的调用
+
+D().setName("CJ").setAge(18).setName();
